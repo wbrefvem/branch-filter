@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: branch-filter-webhook-interceptor
+  namespace: tekton-pipelines
+spec:
+  selector:
+    matchLabels:
+      app: branch-filter
+  template:
+    metadata:
+      labels:
+        app: branch-filter
+    spec:
+      containers:
+      - command:
+        - /branch-filter
+        env:
+        - name: GIT_PROVIDER
+          value: bitbucket-server
+        - name: GIT_URL
+          value: https://scm.hill-rom.com
+        - name: ALLOWED_BRANCHES
+          value: development/container-work
+        ports:
+          - name: http
+            containerPort: 8080
+        image: trysterodev/branch-filter:v0.0.1
+        imagePullPolicy: Always
+        name: branch-filter
+        resources:
+          limits:
+            cpu: 100m
+            memory: 30Mi
+          requests:
+            cpu: 100m
+            memory: 20Mi
