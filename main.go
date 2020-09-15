@@ -6,11 +6,13 @@ import (
 	"os"
 
 	log "github.com/sirupsen/logrus"
-	"github.com/trysterodev/branch-filter/pkg/serve"
+	"github.com/trysterodev/branch-filter/pkg/branchfilter"
 )
 
 func main() {
-	mux, err := serve.NewBranchFilterServeMux()
+	log.SetFormatter(&log.JSONFormatter{})
+
+	mux, err := branchfilter.NewBranchFilterServeMux()
 	if err != nil {
 		log.Fatalf("error initializing branch filter serve mux: %s", err)
 	}

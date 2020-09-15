@@ -21,11 +21,11 @@ spec:
         - name: GIT_URL
           value: https://scm.hill-rom.com
         - name: ALLOWED_BRANCHES
-          value: development/container-work
+          value: development/container-work:ci/cd-automation
         ports:
           - name: http
             containerPort: 8080
-        image: trysterodev/branch-filter:v0.0.1
+        image: trysterodev/branch-filter:v0.0.2
         imagePullPolicy: Always
         name: branch-filter
         resources:

@@ -1,4 +1,4 @@
-package serve
+package branchfilter
 
 import (
 	"bytes"
@@ -70,7 +70,7 @@ func (b *BranchFilterServeMux) handleWebHookRequests(w http.ResponseWriter, r *h
 	case http.MethodPost:
 		b.handlePost(w, r)
 	default:
-		log.Infof("catcher received and ignored a request with unsupported method %s from %s", r.Method, r.RemoteAddr)
+		log.Infof("branch filter received and ignored a request with unsupported method %s from %s", r.Method, r.RemoteAddr)
 	}
 }
 
